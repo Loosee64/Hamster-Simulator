@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Hammy
   m_EditorClassIdentifier: Assembly-CSharp::HamsterState
   title: Hammy
-  hunger: 0
-  thirst: 0
-  attention: 0
+  hunger: 10
+  thirst: 10
+  attention: 10
   maxHunger: 10
   maxThirst: 10
   maxAttention: 10
