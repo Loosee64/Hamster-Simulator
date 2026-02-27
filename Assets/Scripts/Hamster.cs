@@ -81,7 +81,7 @@ public class Hamster : MonoBehaviour
     {
         if (stats.thirst < stats.maxThirst)
         {
-            waterRef.decreaseValue();
+            waterRef.DecreaseValue();
             stats.thirst++;
         }
         else
@@ -103,7 +103,10 @@ public class Hamster : MonoBehaviour
 
         yield return new WaitForSeconds(1.0f);
 
-        drink();
+        if (waterRef.CanDrink())
+        {
+            drink();
+        }
     }
 
     IEnumerator thirstyTimer()

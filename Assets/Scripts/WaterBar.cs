@@ -14,7 +14,7 @@ public class WaterBar : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        updateBar();
+        UpdateBar();
     }
 
     // Update is called once per frame
@@ -22,13 +22,13 @@ public class WaterBar : MonoBehaviour
     {
     }
 
-    public void addWater()
+    public void AddWater()
     {
         value += 10;
-        updateBar();
+        UpdateBar();
     }
 
-    public void updateBar()
+    public void UpdateBar()
     {
         float newHeight = (value / MAX_VALUE) * maxBar;
 
@@ -40,7 +40,7 @@ public class WaterBar : MonoBehaviour
         barValue.sizeDelta = new Vector2(barValue.sizeDelta.x, newHeight);
     }
 
-    public void decreaseValue()
+    public void DecreaseValue()
     {
         if (value > 0.0f)
         {
@@ -50,6 +50,11 @@ public class WaterBar : MonoBehaviour
         {
             value = 0.0f;
         }
-        updateBar();
+        UpdateBar();
+    }
+
+    public bool CanDrink()
+    {
+        return value > 0;
     }
 }
