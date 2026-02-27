@@ -16,7 +16,7 @@ public class Hamster : MonoBehaviour
     TextMeshProUGUI attention;
     [SerializeField]
     WaterBar waterRef;
-    [SerializeField]
+    
     DialogueLines linesRef;
 
     bool thirsty = false;
@@ -25,10 +25,7 @@ public class Hamster : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        title.text = "Name: " + stats.title;
-        hunger.text = "Hunger: " + stats.hunger.ToString();
-        thirst.text = "Thirst: " + stats.thirst.ToString();
-        attention.text = "Attention: " + stats.attention.ToString();
+        ResetStats();
     }
 
     // Update is called once per frame
@@ -43,6 +40,15 @@ public class Hamster : MonoBehaviour
         {
             StartCoroutine(drinkTimer());
         }
+    }
+
+    void ResetStats()
+    {
+        title.text = "Name: " + stats.title;
+        hunger.text = "Hunger: " + stats.hunger.ToString();
+        thirst.text = "Thirst: " + stats.thirst.ToString();
+        attention.text = "Attention: " + stats.attention.ToString();
+        linesRef = stats.greeting;
     }
 
     public void feed()
@@ -139,5 +145,11 @@ public class Hamster : MonoBehaviour
         }
 
         return lines;
+    }
+
+    public void SetHamster(HamsterStats t_ham)
+    {
+        stats = t_ham;
+        ResetStats();
     }
 }
