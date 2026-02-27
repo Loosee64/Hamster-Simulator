@@ -16,6 +16,8 @@ public class Hamster : MonoBehaviour
     TextMeshProUGUI attention;
     [SerializeField]
     WaterBar waterRef;
+    [SerializeField]
+    DialogueLines linesRef;
 
     bool thirsty = false;
     bool thirstDown = false;
@@ -53,7 +55,7 @@ public class Hamster : MonoBehaviour
         {
             stats.hunger = stats.maxHunger;
         }
-            hunger.text = "Hunger: " + stats.hunger.ToString();
+        hunger.text = "Hunger: " + stats.hunger.ToString();
     }
 
     public void talk()
@@ -66,7 +68,7 @@ public class Hamster : MonoBehaviour
         {
             stats.attention = stats.maxAttention;
         }
-            attention.text = "Attention: " + stats.attention.ToString();
+        attention.text = "Attention: " + stats.attention.ToString();
     }
 
     public void drink()
@@ -116,5 +118,26 @@ public class Hamster : MonoBehaviour
         }
 
         thirstDown = false;
+    }
+
+    public string[] GetLines()
+    {
+        string[] lines = new string[linesRef.lines.Length];
+        linesRef.lines.CopyTo(lines, 0);
+
+        for (int index = 0; index < lines.Length; index++)
+        {
+            for(int index2 = 0; index2 < lines[index].Length; index2++)
+            {
+                if (lines[index][index2] == '-')
+                {
+                    lines[index] = lines[index].Remove(index2, 1);
+                    lines[index] = lines[index].Insert(index2, stats.title);
+                    lines[index].ToUpper();
+                }
+            }
+        }
+
+        return lines;
     }
 }
