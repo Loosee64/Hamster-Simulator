@@ -22,6 +22,8 @@ public class Hamster : MonoBehaviour
     bool thirsty = false;
     bool thirstDown = false;
 
+    bool hungerDown = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -40,6 +42,11 @@ public class Hamster : MonoBehaviour
         if (thirsty)
         {
             StartCoroutine(drinkTimer());
+        }
+
+        if (!hungerDown)
+        {
+            StartCoroutine(hungryTimer());
         }
     }
 
@@ -128,6 +135,18 @@ public class Hamster : MonoBehaviour
         }
 
         thirstDown = false;
+    }
+
+    IEnumerator hungryTimer()
+    {
+        hungerDown = true;
+        yield return new WaitForSeconds(10.0f);
+        if (stats.hunger > 0)
+        {
+            stats.hunger--;
+        }
+        hungerDown = false;
+        ResetStats();
     }
 
     public string[] GetLines()

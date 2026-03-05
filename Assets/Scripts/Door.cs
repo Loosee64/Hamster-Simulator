@@ -1,25 +1,63 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Door : MonoBehaviour
 {
     [SerializeField]
     HamsterStats stats;
 
+    TextMeshProUGUI textRef;
+    Image imageRef;
+    Color colour;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        textRef = GetComponentInChildren<TextMeshProUGUI>();
+        imageRef = GetComponent<Image>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        colour = Color.white;
+        textRef.text = "";
 
+        if (stats.thirst < stats.maxThirst / 2.0f)
+        {
+            textRef.text += "Thirsty";
+            colour.g -= 0.2f;
+            colour.b -= 0.2f;
+            imageRef.color = colour;
+        }
+        if (stats.hunger < stats.maxHunger / 2.0f)
+        {
+            textRef.text += "Hungry";
+            colour.g -= 0.2f;
+            colour.b -= 0.2f;
+            imageRef.color = colour;
+        }
+        if (stats.attention < stats.maxAttention / 2.0f)
+        {
+            textRef.text += "Bored";
+            colour.g -= 0.2f;
+            colour.b -= 0.2f;
+            imageRef.color = colour;
+        }
     }
 
     public void EnterCage()
     {
         GameData.hamster = stats;
         SceneManager.LoadScene("Cage");
+    }
+
+    public void DecreaseValues()
+    {
+        stats.hunger = 0;
+        stats.thirst = 0;
+        stats.attention = 0;
     }
 }
