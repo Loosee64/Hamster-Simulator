@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0ea700c3635dea4697f0c2c07d22380, type: 3}
   m_Name: Greeting2
   m_EditorClassIdentifier: Assembly-CSharp::DialogueLines
-  lines: []
+  lines:
+  - Who are you?
+  - I'm -, not that it's any of your business
+  - .......
+  - Are you gonna keep staring at me??
+  - I know I'm adorable, but I got things to do

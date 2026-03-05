@@ -19,3 +19,4 @@ MonoBehaviour:
   maxHunger: 10
   maxThirst: 10
   maxAttention: 10
+  greeting: {fileID: 11400000, guid: 6e73bbb54692a23419da859ab15493e7, type: 2}

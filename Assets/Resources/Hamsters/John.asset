@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d1fd392a6210143a8f296bbc7f3cd7, type: 3}
   m_Name: John
   m_EditorClassIdentifier: Assembly-CSharp::HamsterStats
-  title: 
-  hunger: 0
-  thirst: 0
-  attention: 0
-  maxHunger: 10
-  maxThirst: 10
+  title: John
+  hunger: 2
+  thirst: 19
+  attention: 4
+  maxHunger: 15
+  maxThirst: 20
   maxAttention: 10
-  greeting: {fileID: 0}
+  greeting: {fileID: 11400000, guid: 33fe11b42e0ff1d49927b2771695a840, type: 2}

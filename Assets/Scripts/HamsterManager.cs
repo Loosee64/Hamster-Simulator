@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HamsterManager : MonoBehaviour
 {
@@ -30,5 +31,10 @@ public class HamsterManager : MonoBehaviour
         }
 
         hamsterRef.SetHamster(stats[index]);
+    }
+
+    public void ReturnToOuter()
+    {
+        SceneManager.LoadScene("Outer");
     }
 }
