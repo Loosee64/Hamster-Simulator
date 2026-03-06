@@ -1,5 +1,7 @@
 using System.Collections;
 using TMPro;
+using System;
+using System.IO;
 using UnityEngine;
 
 public class Hamster : MonoBehaviour
@@ -174,5 +176,27 @@ public class Hamster : MonoBehaviour
     {
         stats = t_ham;
         ResetStats();
+    }
+
+    public void SaveData()
+    {
+        HamsterData hamsterData = new HamsterData();
+        hamsterData.hunger = stats.hunger;
+        hamsterData.thirst = stats.thirst;
+        hamsterData.attention = stats.attention;
+
+        string json = JsonUtility.ToJson(hamsterData);
+        File.WriteAllText(Application.dataPath + "/SaveData/HamsterData/" + stats.title +  ".json", json);
+    }
+
+    public void LoadData()
+    {
+        string json = File.ReadAllText(Application.dataPath + "/SaveData/HamsterData/" + stats.title + ".json");
+        HamsterData hamsterData;
+        hamsterData = JsonUtility.FromJson<HamsterData>(json);
+
+        stats.hunger = hamsterData.hunger;
+        stats.thirst = hamsterData.thirst;
+        stats.attention = hamsterData.attention;
     }
 }

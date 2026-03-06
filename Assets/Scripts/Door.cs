@@ -1,7 +1,10 @@
 using TMPro;
+using UnityEditor.Overlays;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
+using System.IO;
 
 public class Door : MonoBehaviour
 {
@@ -17,6 +20,7 @@ public class Door : MonoBehaviour
     {
         textRef = GetComponentInChildren<TextMeshProUGUI>();
         imageRef = GetComponent<Image>();
+        LoadData();
     }
 
     // Update is called once per frame
@@ -59,5 +63,16 @@ public class Door : MonoBehaviour
         stats.hunger = 0;
         stats.thirst = 0;
         stats.attention = 0;
+    }
+
+    public void LoadData()
+    {
+        string json = File.ReadAllText(Application.dataPath + "/SaveData/HamsterData/" + stats.title + ".json");
+        HamsterData hamsterData;
+        hamsterData = JsonUtility.FromJson<HamsterData>(json);
+
+        stats.hunger = hamsterData.hunger;
+        stats.thirst = hamsterData.thirst;
+        stats.attention = hamsterData.attention;
     }
 }

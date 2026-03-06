@@ -11,6 +11,7 @@ public class TimeManager : MonoBehaviour
     Block blockRef;
     long timeDiff;
     DateTime diffInterval;
+    bool running = false;
 
 
     [SerializeField]
@@ -24,7 +25,10 @@ public class TimeManager : MonoBehaviour
 
         timeData = new TimeData();
 
-       LoadTimeData();
+        if (running)
+        {
+            LoadTimeData();
+        }
 
         timeData.startTime = DateTime.Now.Ticks;
 
@@ -37,9 +41,15 @@ public class TimeManager : MonoBehaviour
         DateTime startTime = new DateTime(timeData.startTime);
         DateTime difference = new DateTime(timeDiff);
 
-        text.text = "Close time: " + closeTime.ToString() + "\nStart time: " + startTime.ToString() + "\nDifference: " + difference.ToString();
+        if (running)
+        {
+            text.text = "Close time: " + closeTime.ToString() + "\nStart time: " + startTime.ToString() + "\nDifference: " + difference.ToString();
+        }
 
-        ApplyTime();
+        if (running)
+        {
+            ApplyTime();
+        }
     }
 
     void SaveTimeData()
@@ -56,8 +66,11 @@ public class TimeManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        timeData.closeTime = DateTime.Now.Ticks;
-        SaveTimeData();
+        if (running)
+        {
+            timeData.closeTime = DateTime.Now.Ticks;
+            SaveTimeData();
+        }
     }
 
     void ApplyTime()
@@ -66,5 +79,11 @@ public class TimeManager : MonoBehaviour
         {
             blockRef.GetComponent<Block>().DecreaseValues();
         }
+    }
+
+    public void InvertTime()
+    {
+        running = !running;
+        text.text = "";
     }
 }
