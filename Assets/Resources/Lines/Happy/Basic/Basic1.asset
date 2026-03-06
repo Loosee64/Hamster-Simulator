@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0ea700c3635dea4697f0c2c07d22380, type: 3}
-  m_Name: Greeting1
+  m_Name: Basic1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueLines
   lines:
-  - Hey there!!! My name is -!!!!
-  - I'm just a little hamster guy. A little dude, if you will
-  - I'm glad to finally meet someone! Haven't done that before!
+  - Yayyyy!! I'm so happy!!!
+  - Today is the best day!!!!
+  - And you're my bestest friend ever forever!!!!
+  - Hoorayyy!!

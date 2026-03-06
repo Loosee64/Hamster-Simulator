@@ -8,15 +8,24 @@ public class Block : MonoBehaviour
     RectTransform doorMainRef;
     Door[] doors;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void Awake()
     {
+        if (doors == null)
+        {
+            doors = doorMainRef.GetComponentsInChildren<Door>();
+        }
+    }
+
+    public void Update()
+    {
+        foreach (Door door in doors)
+        {
+            door.GetComponent<Door>().KillCheck();
+        }
     }
 
     public void DecreaseValues()
     {
-        doors = doorMainRef.GetComponentsInChildren<Door>();
-
         foreach (Door door in doors)
         {
             door.GetComponent<Door>().DecreaseValues();

@@ -65,6 +65,16 @@ public class Door : MonoBehaviour
         stats.attention = 0;
     }
 
+    public void KillCheck()
+    {
+        if (stats.happiness == 0)
+        {
+            GameData.death = true;
+            GameData.deathName = stats.title;
+            stats.alive = false;
+        }
+    }
+
     public void LoadData()
     {
         string json = File.ReadAllText(Application.dataPath + "/SaveData/HamsterData/" + stats.title + ".json");
@@ -74,5 +84,6 @@ public class Door : MonoBehaviour
         stats.hunger = hamsterData.hunger;
         stats.thirst = hamsterData.thirst;
         stats.attention = hamsterData.attention;
+        stats.happiness = hamsterData.happiness;
     }
 }

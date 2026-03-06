@@ -7,10 +7,11 @@ public class HamsterStats : ScriptableObject
     public int hunger = 0;
     public int thirst = 0;
     public int attention = 0;
+    public string personality = "";
+    public int happiness = 100;
+    public bool alive = true;
 
     public int maxHunger = 10;
     public int maxThirst = 10;
     public int maxAttention = 10;
-
-    public DialogueLines greeting;
 }

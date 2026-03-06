@@ -1,6 +1,5 @@
 using System.Collections;
 using TMPro;
-using System;
 using System.IO;
 using UnityEngine;
 
@@ -25,6 +24,9 @@ public class Hamster : MonoBehaviour
     bool thirstDown = false;
 
     bool hungerDown = false;
+
+    bool greeting = true;
+    int lastDialogue = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -58,7 +60,6 @@ public class Hamster : MonoBehaviour
         hunger.text = "Hunger: " + stats.hunger.ToString();
         thirst.text = "Thirst: " + stats.thirst.ToString();
         attention.text = "Attention: " + stats.attention.ToString();
-        linesRef = stats.greeting;
     }
 
     public void feed()
@@ -153,6 +154,26 @@ public class Hamster : MonoBehaviour
 
     public string[] GetLines()
     {
+        if (GameData.death)
+        {
+            LoadDeathLine();
+            greeting = false;
+            GameData.death = false;
+        }
+        else
+        {
+            if (greeting)
+            {
+                LoadGreeting();
+                greeting = false;
+            }
+            else
+            {
+                LoadLine("Basic");
+            }
+        }
+        
+
         string[] lines = new string[linesRef.lines.Length];
         linesRef.lines.CopyTo(lines, 0);
 
@@ -164,6 +185,12 @@ public class Hamster : MonoBehaviour
                 {
                     lines[index] = lines[index].Remove(index2, 1);
                     lines[index] = lines[index].Insert(index2, stats.title);
+                    lines[index].ToUpper();
+                }
+                if (lines[index][index2] == '=')
+                {
+                    lines[index] = lines[index].Remove(index2, 1);
+                    lines[index] = lines[index].Insert(index2, GameData.deathName);
                     lines[index].ToUpper();
                 }
             }
@@ -184,6 +211,8 @@ public class Hamster : MonoBehaviour
         hamsterData.hunger = stats.hunger;
         hamsterData.thirst = stats.thirst;
         hamsterData.attention = stats.attention;
+        hamsterData.alive = stats.alive;
+        hamsterData.happiness = stats.happiness;
 
         string json = JsonUtility.ToJson(hamsterData);
         File.WriteAllText(Application.dataPath + "/SaveData/HamsterData/" + stats.title +  ".json", json);
@@ -198,5 +227,32 @@ public class Hamster : MonoBehaviour
         stats.hunger = hamsterData.hunger;
         stats.thirst = hamsterData.thirst;
         stats.attention = hamsterData.attention;
+        stats.alive = hamsterData.alive;
+        stats.happiness = hamsterData.happiness;
+    }
+
+    public void LoadGreeting()
+    {
+        linesRef = Resources.Load<DialogueLines>("Lines/" + stats.personality + "/Greetings/Greeting");
+    }
+
+    public void LoadLine(string t_type)
+    {
+        int rand = Random.Range(1, 3);
+        while(lastDialogue == rand)
+        {
+            rand = Random.Range(1, 3);
+        }
+
+        lastDialogue = rand;
+
+        linesRef = Resources.Load<DialogueLines>("Lines/" + stats.personality + "/" + t_type + "/" + t_type + rand.ToString());
+    }
+
+    public void LoadDeathLine()
+    {
+        int rand = Random.Range(1, 3);
+
+        linesRef = Resources.Load<DialogueLines>("Lines/Death/Death" + rand.ToString());
     }
 }

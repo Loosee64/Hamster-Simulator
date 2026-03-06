@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0ea700c3635dea4697f0c2c07d22380, type: 3}
-  m_Name: Greeting2
+  m_Name: Greeting
   m_EditorClassIdentifier: Assembly-CSharp::DialogueLines
   lines:
   - Who are you?
