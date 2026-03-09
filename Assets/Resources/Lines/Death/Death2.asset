@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0ea700c3635dea4697f0c2c07d22380, type: 3}
   m_Name: Death2
   m_EditorClassIdentifier: Assembly-CSharp::DialogueLines
-  lines: []
+  lines:
+  - Hey, good to see you....
+  - Sorry I'm just a little....down
+  - = is gone....was a good friend of mine
+  - Fell into a washing machine, was ripped to shreds.
+  - Poor guy

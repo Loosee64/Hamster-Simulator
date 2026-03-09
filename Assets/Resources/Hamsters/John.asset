@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: John
   m_EditorClassIdentifier: Assembly-CSharp::HamsterStats
   title: John
-  hunger: 2
-  thirst: 19
-  attention: 4
+  hunger: 13
+  thirst: 6
+  attention: 7
+  personality: Moody
+  happiness: 0
+  alive: 0
   maxHunger: 15
   maxThirst: 20
   maxAttention: 10
-  greeting: {fileID: 11400000, guid: 33fe11b42e0ff1d49927b2771695a840, type: 2}

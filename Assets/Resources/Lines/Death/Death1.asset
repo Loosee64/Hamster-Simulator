@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0ea700c3635dea4697f0c2c07d22380, type: 3}
   m_Name: Death1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueLines
-  lines: []
+  lines:
+  - Oh did you hear?
+  - It's =. He jumped into a fire. Weird guy
+  - Anyway, what's up?

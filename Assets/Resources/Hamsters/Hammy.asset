@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Hammy
   m_EditorClassIdentifier: Assembly-CSharp::HamsterState
   title: Hammy
-  hunger: 10
-  thirst: 10
+  hunger: 7
+  thirst: 2
   attention: 10
+  personality: Happy
+  happiness: 100
+  alive: 1
   maxHunger: 10
   maxThirst: 10
   maxAttention: 10
-  greeting: {fileID: 11400000, guid: 6e73bbb54692a23419da859ab15493e7, type: 2}
